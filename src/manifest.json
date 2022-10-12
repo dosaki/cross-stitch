@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+  "name": "Cross Stitcher",
+  "version": "0.1.0",
+  "description": "Adds colourblind-friendly patterns to backgrounds on Monday",
+  "icons": {
+    "48": "icons/48.png"
+  },
+  "permissions": ["activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["*://*.monday.com/*"],
+      "js": ["main.js"]
+    }
+  ]
+}

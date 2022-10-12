@@ -1,0 +1,28 @@
+{
+  "name": "cross-stitcher",
+  "version": "0.1.0",
+  "description": "Adds colourblind-friendly patterns to backgrounds on Monday",
+  "main": "src/main.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha --require @babel/register"
+  },
+  "keywords": [
+    "colourblind",
+    "colorblind",
+    "monday"
+  ],
+  "author": "Tiago Correia",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.19.3",
+    "@babel/core": "^7.19.3",
+    "@babel/preset-env": "^7.19.4",
+    "@babel/register": "^7.18.9",
+    "mocha": "^10.0.0",
+    "webpack": "^5.74.0",
+    "webpack-cli": "^4.10.0"
+  }
+}

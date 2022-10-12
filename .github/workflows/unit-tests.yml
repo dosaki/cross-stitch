@@ -1,0 +1,25 @@
+name: run-unit-tests
+on: [push]
+
+jobs:
+  unit-test:
+    defaults:
+      run:
+        working-directory: ./
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-node@v3
+        with:
+          python-version: "17"
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run Unit Tests
+        run: |
+          npm test

@@ -1,14 +1,8 @@
-name: build-dist
-
-on:
-  workflow_run:
-    workflows: ["run-unit-tests"]
-    types:
-      - completed
+name: run-unit-tests
+on: [push]
 
 jobs:
-  dist:
-    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+  unit-test:
     defaults:
       run:
         working-directory: ./
@@ -25,6 +19,10 @@ jobs:
       - name: Install dependencies
         run: |
           npm install
+
+      - name: Run Unit Tests
+        run: |
+          npm test
 
       - name: Build dist
         run: |

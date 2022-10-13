@@ -2,7 +2,7 @@ name: test-and-build
 on: [push]
 
 jobs:
-  unit-test:
+  test-and-build:
     defaults:
       run:
         working-directory: ./

@@ -14,7 +14,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
-          python-version: "17"
+          node-version: "17"
 
       - name: Install dependencies
         run: |
@@ -24,10 +24,15 @@ jobs:
         run: |
           npm test
 
-      - name: Set version
+      - id: manifest
+        name: Load manifest
         run: |
-          echo "PACKAGE_JSON_VERSION=$(cat src/manifest.json | jq --raw-output .version)" >> GITHUB_ENV
-          echo "Version: ${PACKAGE_JSON_VERSION}"
+          content=`cat ./src/manifest.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=manifestJson::$content"
 
       - name: Build dist
         run: |
@@ -39,8 +44,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ env.PACKAGE_JSON_VERSION }}
-          name: ${{ env.PACKAGE_JSON_VERSION }} (${{ github.sha }})
+          tag_name: v${{fromJson(steps.manifest.outputs.manifestJson).version}}
+          name: ${{fromJson(steps.manifest.outputs.manifestJson).version}} (${{ github.sha }})
           body: Release notes needed...
           draft: true
           prerelease: false

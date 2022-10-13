@@ -20,7 +20,7 @@ const isDarkColour = (colourString) => {
 
 const getContrastingTone = (colourString) => {
     if (isDarkColour(colourString)) {
-        return pSBC(0.8, colourString);
+        return pSBC(0.5, colourString);
     }
     return pSBC(-0.8, colourString);
 }

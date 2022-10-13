@@ -28,6 +28,10 @@ jobs:
         run: |
           ./build.sh
 
+      - name: Set version
+        run: |
+          echo "PACKAGE_JSON_VERSION=$(cat src/manifest.json | jq --raw-output .version)" >> PACKAGE_JSON_VERSION
+
       - name: Upload Release Asset
         id: upload-release-asset
         uses: softprops/action-gh-release@v1

@@ -17,3 +17,19 @@ What if they could look like this?
 
 
 Cross Stitcher is an addon for Firefox and Chrome that adds patterns to your Monday board status fields to make them easier to read for people with colourblindness.
+
+# How to use (preview)
+## Firefox
+* Go to the [Extensions Debugging page](about:debugging#/runtime/this-firefox)
+    * Enter "[about:debugging](about:debugging)" in the URL bar
+    * click "This Firefox"
+* Click "Load Temporary Add-on"
+* Select the zip file you downloaded from the [releases](https://github.com/dosaki/cross-stitch/releases)
+
+## Chrome
+* Download the extension from the [releases](https://github.com/dosaki/cross-stitch/releases)
+* Extract the contents of the zip file
+* Go to [Chrome Extensions Manager](chrome://extensions)
+* Activate developer mode (top-right corner)
+* Click "Load unpacked"
+* Select the extracted contents of the zip file (the folder with `manifest.json`)

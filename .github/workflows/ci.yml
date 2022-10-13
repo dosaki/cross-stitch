@@ -28,8 +28,15 @@ jobs:
         run: |
           ./build.sh
 
-      - name: Upload Release
-        uses: ncipollo/release-action@v1
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          artifacts: "dist/cross-stitcher.zip"
-          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: v${{ env.PACKAGE_JSON_VERSION }}
+          name: ${{ env.PACKAGE_JSON_VERSION }} (${{ github.sha }})
+          body: Release notes needed...
+          draft: true
+          prerelease: false
+          files: dist/cross-stitcher.zip

@@ -1,0 +1,52 @@
+name: run-unit-tests
+on: [push]
+
+jobs:
+  unit-test:
+    defaults:
+      run:
+        working-directory: ./
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: "17"
+
+      - name: Install dependencies
+        run: |
+          npm install
+
+      - name: Run Unit Tests
+        run: |
+          npm test
+
+      - id: manifest
+        name: Load manifest
+        run: |
+          content=`cat ./src/manifest.json`
+          content="${content//'%'/'%25'}"
+          content="${content//$'\n'/'%0A'}"
+          content="${content//$'\r'/'%0D'}"
+          # end of optional handling for multi line json
+          echo "::set-output name=manifestJson::$content"
+
+      - name: Build dist
+        run: |
+          ./build.sh
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: softprops/action-gh-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{fromJson(steps.manifest.outputs.manifestJson).version}}
+          name: ${{fromJson(steps.manifest.outputs.manifestJson).version}} (${{ github.sha }})
+          body: Release notes needed...
+          draft: true
+          prerelease: false
+          files: dist/cross-stitcher.zip

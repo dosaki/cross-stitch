@@ -24,6 +24,7 @@ const observeDOM = (function () {
 
 observeDOM(document.body, () => {
     document.querySelectorAll(".status-cell-component.status-print-color").forEach(el => crossStitchElement(el));
+    document.querySelectorAll(".single-log-value.color").forEach(el => crossStitchElement(el));
     document.querySelectorAll(".status-color-background").forEach(el => crossStitchElement(el));
     document.querySelectorAll(".color-option-box").forEach(el => crossStitchElement(el));
 })

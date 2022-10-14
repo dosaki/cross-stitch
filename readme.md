@@ -33,3 +33,5 @@ Cross Stitcher is an addon for Firefox and Chrome that adds patterns to your Mon
 * Activate developer mode (top-right corner)
 * Click "Load unpacked"
 * Select the extracted contents of the zip file (the folder with `manifest.json`)
+
+# How to build

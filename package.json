@@ -1,6 +1,6 @@
 {
   "name": "cross-stitcher",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Adds colourblind-friendly patterns to backgrounds on Monday",
   "main": "src/main.js",
   "directories": {

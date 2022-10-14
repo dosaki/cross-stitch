@@ -1,5 +1,6 @@
 const assert = require('assert')
-const {getColourish} = require('../src/patterns/patterns.js')
+const {getColourish, createMatrix} = require('../src/patterns/patterns.js')
+const {describe} = require("mocha/lib/cli/run");
 
 describe("getColourish", function () {
     describe("getColourish", function () {

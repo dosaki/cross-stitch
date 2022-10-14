@@ -6,11 +6,16 @@
   "icons": {
     "48": "icons/48.png"
   },
-  "permissions": ["activeTab"],
+  "permissions": ["activeTab", "scripting"],
   "content_scripts": [
     {
       "matches": ["*://*.monday.com/*"],
       "js": ["main.js"]
     }
-  ]
+  ],
+  "browser_action": {
+    "default_icon": "icons/48.png",
+    "default_title": "Cross Stitcher",
+    "default_popup": "popup.html"
+  }
 }

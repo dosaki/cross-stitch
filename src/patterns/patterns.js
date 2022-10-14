@@ -86,7 +86,7 @@ const getPatternFor = {
     }
 }
 
-export const getColourish = ([r,g,b]) => {
+export const getColourish = ([r, g, b]) => {
     const rgSimilar = isSimilar(r, g);
     const gbSimilar = isSimilar(g, b);
     const brSimilar = isSimilar(b, r);
@@ -125,7 +125,7 @@ const makePattern = (elementStyle) => {
     const stringColour = getBackgroundColourFromCssProperty(elementStyle);
     const splitColourValues = splitColour(stringColour);
     const colourish = getColourish(splitColourValues);
-    return getPatternFor[colourish](stringColour ,splitColourValues) || {};
+    return getPatternFor[colourish](stringColour, splitColourValues) || {};
 }
 
 export const crossStitchElement = (element) => {
@@ -135,5 +135,11 @@ export const crossStitchElement = (element) => {
     }
     element.__crossStitchedColour = elementStyle.backgroundColor;
     const newStyle = makePattern(elementStyle);
-    Object.keys(newStyle).forEach(prop => element.setAttribute("style", `${element.getAttribute('style')};${prop}: ${newStyle[prop]}`));
+    const style = Object.keys(newStyle).map(prop => `${prop}: ${newStyle[prop]}`).join('');
+    element.setAttribute("style", style)
+}
+
+export const unCrossStitchElement = (element) => {
+    element.__crossStitchedColour = null;
+    element.setAttribute("style", element.getAttribute('style').replace(/background-image:.*;/, ""));
 }

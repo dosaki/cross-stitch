@@ -20,10 +20,11 @@ mkdir -p ./dist
 ./node_modules/webpack/bin/webpack.js --mode=production
 cp -r ./icons ./build/
 cp ./src/manifest.json ./build/
+cp ./src/popup.* ./build/
 
 # Zip for distribution
 cd ./build || exit 1
-zip -r ../dist/cross-stitcher.zip ./icons ./manifest.json ./main.js
+zip -r ../dist/cross-stitcher.zip ./icons ./manifest.json ./main.js ./popup.*
 cd .. || exit 1
 
 echo "Done!"

@@ -35,6 +35,15 @@ Cross Stitcher is an addon for Firefox and Chrome that adds patterns to your Mon
 * Select the extracted contents of the zip file (the folder with `manifest.json`)
 
 # How to build
+To run the build script, you'll need:
+* `bash`
+* `zip`
+* `node` (tested with v18.8.0)
+* `npm` (tested with v8.18.0)
+
+To build, simply run:
 ```shell
 ./build.sh
 ```
+
+This will generate a zip file in the `dist` folder (and the unpacked files in `build` folder).
